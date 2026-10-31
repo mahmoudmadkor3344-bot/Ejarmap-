@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<!-- skill:chrome -->
+<style>
+#authBtn{display:none!important}
+
+/* Credit line — bottom-right */
+.design-ui-credit {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  font: 11px/1 system-ui, sans-serif;
+  color: rgba(128,128,128,0.5);
+  pointer-events: none;
+  z-index: 2147483647;
+  transition: opacity 0.4s ease;
+  user-select: none;
+  letter-spacing: 0.02em;
+}
+
+/* Hide chrome on touch devices */
+@media (hover: none) {
+  .design-ui-credit { display: none; }
+}
+
+/* Print fixes */
+@media print {
+  * {
+    transition: none !important;
+    animation: none !important;
+    box-shadow: none !important;
+  }
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .design-ui-credit { display: none !important; }
+}
+
+</style>
+<script>
+(function () {
+    // Design-ui pages are single compositions, so the whole body is editable.
+    function markEditable() {
+        document.body.classList.add('artifact-editable');
+    }
+
+    // Credit badge with idle-fade. Hover devices only.
+    function initChromeUI() {
+        if (!matchMedia('(hover: hover)').matches) return;
+
+        var credit = document.createElement('div');
+        credit.className = 'design-ui-credit';
+        credit.setAttribute('aria-hidden', 'true');
+        credit.innerHTML = '\u{1F49C} by ClickUp Brain';
+        document.body.appendChild(credit);
+
+        var timer = null;
+        var fade = function (out) { credit.style.opacity = out ? '0' : ''; };
+        fade(true);
+        var show = function () {
+            fade(false);
+            clearTimeout(timer);
+            timer = setTimeout(function () { fade(true); }, 3000);
+        };
+        document.addEventListener('mousemove', show);
+        show();
+    }
+
+    function init() {
+        markEditable();
+        initChromeUI();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+
+</script>
+<!-- /skill:chrome -->
+<!-- skill:libraries -->
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js" integrity="sha384-wHFvAtjmgnkA2PJcMsDaCgdipf7X7YV44X/igbLHpvGiq6T5/PvFKl93grpvtbQT" crossorigin="anonymous"></script>
+<script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons())</script>
+<!-- /skill:libraries -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="EjarMap, a calm way to find your next home." />
+<title>EjarMap | Find a place that fits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:oklch(22% .03 250); --muted:oklch(53% .025 250); --line:oklch(89% .018 250);
+  --paper:oklch(98.2% .008 250); --surface:oklch(100% .006 250); --soft:oklch(95.5% .018 243);
+  --blue:oklch(48% .18 252); --blue-deep:oklch(35% .15 252); --blue-soft:oklch(92% .055 247);
+  --green:oklch(61% .12 165); --amber:oklch(70% .12 75); --red:oklch(57% .16 25);
+  --shadow-sm:0 4px 14px oklch(27% .04 250 / .07); --shadow-md:0 14px 36px oklch(27% .04 250 / .11);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --r-md:18px; --r-lg:26px;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.5;font-optical-sizing:auto} h1,h2,h3,p{margin:0} h1,h2,h3{font-family:Manrope,sans-serif;text-wrap:balance} button,input{font:inherit} button{cursor:pointer} a{color:inherit;text-decoration:none} svg{display:block}.shell{width:min(1280px,calc(100% - 48px));margin-inline:auto}
+.topbar{height:76px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;position:sticky;top:0;z-index:5}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:10px;font-family:Manrope;font-size:21px;font-weight:800;letter-spacing:-.04em}.brand-mark{width:34px;height:34px;border-radius:11px;background:var(--blue);display:grid;place-items:center;color:oklch(98% .01 250);box-shadow:0 6px 16px oklch(48% .18 252 / .24)}.brand-mark svg{width:19px}.navlinks{display:flex;align-items:center;gap:30px;color:var(--muted);font-size:14px;font-weight:600}.navlinks a:hover,.navlinks a.active{color:var(--blue)}.nav-actions{display:flex;align-items:center;gap:12px;position:relative;z-index:20;direction:ltr;flex-direction:row;isolation:isolate}.nav-actions button{position:relative;z-index:21;flex:0 0 auto;touch-action:manipulation;pointer-events:auto}.btn{min-height:44px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:0 16px;display:inline-flex;gap:9px;align-items:center;justify-content:center;font-weight:700;font-size:14px;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease)}.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}.btn:focus-visible,.icon-btn:focus-visible,.search-input:focus-within{outline:3px solid oklch(70% .15 250);outline-offset:3px}.btn.primary{background:var(--blue);border-color:var(--blue);color:oklch(98% .01 250)}.btn.primary:hover{background:var(--blue-deep)}.btn.ghost{border-color:transparent;background:transparent}.avatar{height:36px;width:36px;border-radius:50%;display:grid;place-items:center;background:var(--blue-soft);color:var(--blue-deep);font-weight:800;font-size:13px}
+.hero{padding:62px 0 44px;background:var(--surface);border-bottom:1px solid var(--line)}.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:72px;align-items:end}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:11px;color:var(--blue);font-weight:800;margin-bottom:18px}.hero h1{font-size:clamp(42px,5.7vw,78px);line-height:1.01;letter-spacing:-.07em;max-width:750px}.hero h1 span{color:var(--blue)}.hero-copy{margin-top:22px;color:var(--muted);max-width:52ch;font-size:17px}.hero-note{justify-self:end;padding:18px 0 3px;border-top:1px solid var(--line);max-width:320px}.hero-note strong{display:block;font-family:Manrope;font-size:17px;margin-bottom:4px}.hero-note p{font-size:14px;color:var(--muted)}
+.search-wrap{margin-top:42px}.search-bar{display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow-md);padding:8px}.search-field{min-height:56px;padding:7px 17px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--line)}.search-field label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--muted)}.search-field input{border:0;outline:0;padding:2px 0 0;background:transparent;color:var(--ink);font-weight:700;width:100%}.search-field input::placeholder{color:var(--ink);opacity:1}.search-submit{margin:4px;min-width:124px;border-radius:12px}.filters{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}.filter-chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:9px 13px;display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-weight:600;font-size:13px}.filter-chip:hover{color:var(--blue);border-color:oklch(75% .08 250)}.result-meta{margin-left:auto;color:var(--muted);font-size:13px}.result-meta b{color:var(--ink)}
+.content{padding:48px 0 80px}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px}.section-head h2{font-size:27px;letter-spacing:-.04em}.section-head p{color:var(--muted);font-size:14px;margin-top:5px}.link{color:var(--blue);font-size:14px;font-weight:800;display:flex;align-items:center;gap:7px}.link:hover{text-decoration:underline}.listing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.property{min-width:0;transition:transform .25s var(--ease)}.property:hover{transform:translateY(-4px)}.property-visual{height:252px;border-radius:var(--r-lg);overflow-x:auto;overflow-y:hidden;position:relative;background:var(--blue-soft);display:flex;scroll-snap-type:x mandatory;scrollbar-width:thin}.property-visual .photo-slide{flex:0 0 100%;height:100%;position:relative;scroll-snap-align:start}.property-visual .photo-slide img{width:100%;height:100%;object-fit:cover;display:block}.property-visual .photo-kind{position:absolute;bottom:12px;left:12px;background:#101828cc;color:white;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:800}.property-visual .photo-count{position:absolute;top:13px;right:13px;background:#ffffffed;color:#172b4d;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:800;z-index:2}.property-visual svg,.property-visual img{width:100%;height:100%;object-fit:cover;display:block}.badge{position:absolute;top:13px;left:13px;background:oklch(100% .004 250 / .92);border-radius:999px;padding:7px 10px;color:var(--blue-deep);font-weight:800;font-size:11px;letter-spacing:.03em}.offer-badge{position:absolute;top:13px;left:13px;z-index:3;border-radius:999px;padding:8px 13px;background:var(--blue-deep);color:#fff;font-size:13px;font-weight:800;box-shadow:0 3px 12px #0002}.offer-badge.for-sale{background:#166534}.save{position:absolute;right:13px;top:13px;width:36px;height:36px;border:0;border-radius:50%;display:grid;place-items:center;background:oklch(100% .004 250 / .92);color:var(--ink);transition:.2s}.save:hover,.save.saved{color:var(--red);transform:scale(1.08)}.property-body{padding:15px 3px 0}.property-top{display:flex;justify-content:space-between;gap:10px}.property h3{font-size:17px;letter-spacing:-.02em}.rating{font-size:13px;font-weight:800;white-space:nowrap}.rating svg{display:inline;width:14px;vertical-align:-2px;color:var(--amber);fill:var(--amber)}.property-location{color:var(--muted);font-size:14px;margin-top:2px}.property-details{display:flex;gap:10px;color:var(--muted);font-size:13px;margin-top:10px}.dot{color:oklch(73% .03 250)}.price{margin-top:10px;font-size:15px;font-weight:800}.price span{font-size:13px;color:var(--muted);font-weight:500}
+.feature-strip{margin-top:74px;padding:30px 34px;border-radius:var(--r-lg);background:var(--blue-deep);color:oklch(97% .01 250);display:grid;grid-template-columns:1fr auto;align-items:center;gap:32px;overflow:hidden;position:relative}.feature-strip:after{content:"";position:absolute;width:330px;height:330px;border:1px solid oklch(100% .01 250 / .11);border-radius:50%;right:100px;top:-200px}.feature-strip h2{font-size:28px;letter-spacing:-.04em;position:relative;z-index:1}.feature-strip p{color:oklch(85% .025 250);font-size:14px;margin-top:7px;position:relative;z-index:1}.feature-strip .btn{background:oklch(98% .01 250);color:var(--blue-deep);border-color:transparent;position:relative;z-index:1}
+.map-section{margin-top:76px;display:grid;grid-template-columns:350px 1fr;gap:30px;align-items:stretch}.map-copy{padding:18px 0}.map-copy h2{font-size:31px;line-height:1.1;letter-spacing:-.05em}.map-copy p{color:var(--muted);margin-top:12px;max-width:31ch}.map-list{margin-top:28px;display:grid;gap:12px}.map-list-item{display:grid;grid-template-columns:40px 1fr auto;align-items:center;gap:10px;padding:10px;border-radius:13px}.map-list-item:hover{background:var(--soft)}.mini-image{width:40px;height:40px;border-radius:10px;overflow:hidden}.mini-image svg{width:100%;height:100%}.map-list-item strong{font-size:13px}.map-list-item small{display:block;color:var(--muted);font-size:12px}.map-list-item b{font-size:12px}.map-canvas{height:384px;border-radius:var(--r-lg);overflow:hidden;background:#dce8e9;position:relative;border:1px solid oklch(86% .04 170)}.map-canvas:before{content:"";position:absolute;inset:0;background-image:linear-gradient(32deg,transparent 48%,oklch(100% .01 250 / .75) 49%,oklch(100% .01 250 / .75) 51%,transparent 52%),linear-gradient(112deg,transparent 47%,oklch(100% .01 250 / .72) 48%,oklch(100% .01 250 / .72) 50%,transparent 51%);background-size:140px 110px,180px 150px;opacity:.75}.map-canvas:after{content:"";position:absolute;inset:12% 10% 16% 16%;border:2px dashed oklch(47% .11 170 / .3);border-radius:47% 53% 57% 43%;transform:rotate(-11deg)}.map-label{position:absolute;color:oklch(36% .04 170);font-size:12px;font-weight:800;z-index:1}.label-a{left:13%;top:24%}.label-b{left:57%;top:18%}.label-c{left:32%;bottom:22%}.pin{position:absolute;width:34px;height:34px;border-radius:50% 50% 50% 5px;transform:rotate(-45deg);background:var(--blue);color:oklch(98% .01 250);display:grid;place-items:center;box-shadow:0 8px 17px oklch(35% .15 252 / .28);z-index:2}.pin svg{transform:rotate(45deg);width:16px}.pin-1{left:31%;top:39%}.pin-2{left:64%;top:47%;background:var(--green)}.pin-3{left:46%;top:69%;background:var(--blue-deep)}.map-control{position:absolute;right:14px;top:14px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:8px 11px;font-size:12px;font-weight:800;z-index:3;box-shadow:var(--shadow-sm)}
+.footer{background:var(--surface);border-top:1px solid var(--line);padding:34px 0 26px}.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:24px}.footer-copy{color:var(--muted);font-size:13px}.footer-links{display:flex;gap:20px;color:var(--muted);font-size:13px;font-weight:600}.footer-links a:hover{color:var(--blue)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--ink);color:oklch(98% .01 250);padding:12px 17px;border-radius:12px;font-size:13px;font-weight:700;box-shadow:var(--shadow-md);transition:.3s var(--ease);z-index:8}.toast.show{opacity:1;transform:translate(-50%,0)}
+.live-map{height:390px;width:100%;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line);z-index:1}.pick-map{height:260px;width:100%;border-radius:12px;overflow:hidden;border:1px solid #d0d5dd;z-index:1}.map-search-row{display:flex;gap:8px;margin:8px 0}.map-search-row input{flex:1;min-width:0}.map-search-results{display:grid;gap:6px;margin:0 0 8px}.map-search-results button{width:100%;text-align:start;border:1px solid #d0d5dd;background:#fff;color:#1d2939;border-radius:9px;padding:9px 11px;cursor:pointer;font:inherit;font-size:13px}.map-search-results button:hover{background:#f2f6fa;border-color:#7895b5}.map-search-status{font-size:12px;color:#667085;margin:4px 0 8px}.ej-map-help,.map-hint{font-size:12px;color:#667085;margin-top:7px}.leaflet-popup-content{direction:inherit;text-align:start}.leaflet-container{font:inherit}
+@media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:30px}.hero-note{justify-self:start}.listing-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.map-section{grid-template-columns:1fr}.map-copy{padding:0}.map-list{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.shell{width:min(100% - 32px,1280px)}.topbar{height:68px}.navlinks{display:none}.nav-actions #listPropertyBtn{display:inline-flex;min-height:40px;padding:0 10px;font-size:12px}.nav-actions{gap:6px}.hero{padding:42px 0 30px}.hero h1{font-size:46px}.hero-copy{font-size:16px}.search-wrap{margin-top:30px}.search-bar{display:block;padding:7px}.search-field{border-right:0;border-bottom:1px solid var(--line);min-height:51px;padding-inline:12px}.search-field:last-of-type{border-bottom:0}.search-submit{width:100%;margin:7px 0 0}.filters{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.filter-chip{white-space:nowrap}.result-meta{display:none}.content{padding-top:36px}.section-head{align-items:start}.section-head h2{font-size:24px}.section-head .link{font-size:13px}.listing-grid{grid-template-columns:1fr;gap:32px}.property-visual{height:280px}.feature-strip{margin-top:52px;padding:25px 22px;grid-template-columns:1fr;gap:18px}.feature-strip h2{font-size:24px}.feature-strip .btn{justify-self:start}.map-section{margin-top:56px;gap:20px}.map-list{grid-template-columns:1fr}.map-canvas{height:300px}.live-map{height:330px}.pick-map{height:230px}.footer-inner{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap;gap:13px 19px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+</head>
+<body>
+<header class="topbar"><div class="shell nav"><a class="brand" href="#"><span class="brand-mark"><i data-lucide="map-pin"></i></span>EjarMap</a><nav class="navlinks" aria-label="Primary"><a class="active" href="#explore" data-i18n="explore">Explore</a><a href="#map" data-i18n="mapView">Map view</a><a href="#saved" data-i18n="saved">Saved</a><a href="#about" data-i18n="how">How it works</a></nav><div class="nav-actions"><button class="btn" id="langToggle" type="button">العربية</button><button class="btn ghost" id="listPropertyBtn" type="button" data-i18n="list">List your property</button><button class="btn" id="authBtn" type="button" hidden></button></div></div></header>
+<main id="main">
+<section class="hero"><div class="shell"><div class="hero-grid"><div><div class="eyebrow" data-i18n="eyebrow">Rent with more certainty</div><h1 data-i18n="heroTitle">Find a place that feels <span>right.</span></h1><p class="hero-copy" data-i18n="heroCopy">Search verified rentals by neighborhood, budget, and the details that make a home yours. No noise, just a clearer way to move.</p></div><div class="hero-note"><strong data-i18n="heroNote">Every listing has a story.</strong><p data-i18n="heroNoteCopy">Explore real neighborhoods, honest reviews, and homes that fit the way you live.</p></div></div>
+<div class="search-wrap"><form class="search-bar" id="listingSearchForm"><div class="search-field"><label for="where" data-i18n="where">المكان</label><input id="where" placeholder="المدينة أو المنطقة" aria-label="المدينة أو المنطقة" /></div><div class="search-field"><label for="type" data-i18n="propertyType">نوع العقار</label><select id="type" aria-label="نوع العقار"><option value="" data-i18n="anyType">كل الأنواع</option><option value="apartment" data-i18n="apartment">شقة</option><option value="villa" data-i18n="villa">فيلا</option><option value="chalet" data-i18n="chalet">شاليه</option><option value="studio" data-i18n="studio">استوديو</option><option value="shop" data-i18n="shop">محل تجاري</option><option value="office" data-i18n="office">مكتب</option><option value="land" data-i18n="land">أرض</option></select></div><div class="search-field"><label for="budget" data-i18n="budget">أقصى سعر بالجنيه</label><input id="budget" type="number" min="0" inputmode="numeric" placeholder="أقصى سعر" aria-label="أقصى سعر" /></div><button class="btn primary search-submit" type="submit"><i data-lucide="search"></i> <span data-i18n="search">بحث</span></button></form><div class="filters"><label class="filter-chip"><span data-i18n="offerTypeFilter">نوع العرض</span><select id="offerTypeFilter"><option value="" data-i18n="allOffers">الكل</option><option value="rent" data-i18n="rent">إيجار</option><option value="sale" data-i18n="sale">بيع</option></select></label><label class="filter-chip"><span data-i18n="bedroomsFilter">غرف النوم</span><select id="bedroomsFilter"><option value="0" data-i18n="anyNumber">أي عدد</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></label><button class="filter-chip" id="clearListingFilters" type="button" data-i18n="clearFilters">مسح الفلاتر</button><div class="result-meta"><b id="listingResultCount">0</b> <span data-i18n="resultCountLabel">عقار</span></div></div></div></div></div></section>
+<section class="content" id="explore"><div class="shell"><div class="section-head"><div><h2 data-i18n="homes">Homes worth seeing</h2><p data-i18n="homesCopy">Curated places in Cairo's most-loved neighborhoods</p></div><a class="link" href="#">View all <i data-lucide="arrow-up-right"></i></a></div><div class="listing-grid" id="listingGrid">
+<article class="property"><div class="property-visual"><svg viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" aria-label="Sunlit apartment interior"><rect width="600" height="420" fill="#d9e8e8"/><rect x="0" y="275" width="600" height="145" fill="#c79e7d"/><rect x="45" y="45" width="210" height="160" rx="5" fill="#b7d5d9"/><path d="M50 195L120 122l50 47 35-35 50 61" fill="#f2eee3"/><path d="M0 275h600v16H0z" fill="#a87d63"/><rect x="312" y="135" width="205" height="140" rx="18" fill="#efe7d8"/><rect x="332" y="155" width="165" height="80" rx="8" fill="#bdced0"/><path d="M345 238h140l-18 30H362z" fill="#7b9da1"/><circle cx="100" cy="250" r="35" fill="#557f68"/><path d="M100 217c-11-40 2-64 13-82 13 26 12 53-13 82zm-2 0c-29-23-35-45-30-67 22 11 37 35 30 67z" fill="#6a9a74"/><rect x="110" y="253" width="20" height="55" fill="#8e664f"/></svg><span class="badge">Verified home</span><button class="save" aria-label="Save Riverside apartment" onclick="save(this)"><i data-lucide="heart"></i></button></div><div class="property-body"><div class="property-top"><h3>Riverside apartment</h3><span class="rating"><i data-lucide="star"></i> 4.9</span></div><p class="property-location">Maadi, Cairo</p><div class="property-details"><span>2 beds</span><span class="dot">•</span><span>2 baths</span><span class="dot">•</span><span>126 m²</span></div><div class="price">EGP 18,500 <span>/ month</span></div></div></article>
+<article class="property"><div class="property-visual"><svg viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" aria-label="Modern villa exterior"><rect width="600" height="420" fill="#ecd8ca"/><rect y="270" width="600" height="150" fill="#9db6a0"/><circle cx="483" cy="83" r="53" fill="#efb98c"/><path d="M0 275L230 105l230 170z" fill="#435962"/><path d="M123 275h327V165H123z" fill="#f0e6d7"/><path d="M178 275V199h82v76zm151 0V190h77v85z" fill="#a5c3c7"/><path d="M0 326c122-38 210-25 310 5s198 20 290-8v97H0z" fill="#789a7d"/><path d="M72 372c45-82 97-106 148 0" fill="none" stroke="#557864" stroke-width="28"/><path d="M490 388c-39-72-83-85-124-6" fill="none" stroke="#557864" stroke-width="26"/></svg><span class="badge">New this week</span><button class="save" aria-label="Save garden villa" onclick="save(this)"><i data-lucide="heart"></i></button></div><div class="property-body"><div class="property-top"><h3>Quiet garden villa</h3><span class="rating"><i data-lucide="star"></i> 4.8</span></div><p class="property-location">New Cairo, Cairo</p><div class="property-details"><span>4 beds</span><span class="dot">•</span><span>3 baths</span><span class="dot">•</span><span>242 m²</span></div><div class="price">EGP 32,000 <span>/ month</span></div></div></article>
+<article class="property"><div class="property-visual"><svg viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" aria-label="Cozy apartment near the sea"><rect width="600" height="420" fill="#c6d8e7"/><rect y="285" width="600" height="135" fill="#d4b58d"/><rect x="35" y="42" width="280" height="195" rx="8" fill="#a5c8d6"/><path d="M35 165h280v72H35z" fill="#f0dfc9"/><path d="M47 218h255v19H47z" fill="#8f7666"/><path d="M352 155h180v130H352z" fill="#efe8dd"/><path d="M377 178h128v69H377z" fill="#9fc4d1"/><rect x="413" y="282" width="58" height="58" rx="9" fill="#e8e0ce"/><circle cx="445" cy="276" r="52" fill="#4b806d"/><path d="M445 224v97M400 273h90" stroke="#9fb995" stroke-width="12"/></svg><span class="badge">Top rated</span><button class="save" aria-label="Save coastal loft" onclick="save(this)"><i data-lucide="heart"></i></button></div><div class="property-body"><div class="property-top"><h3>Coastal light loft</h3><span class="rating"><i data-lucide="star"></i> 4.7</span></div><p class="property-location">Sidi Gaber, Alexandria</p><div class="property-details"><span>1 bed</span><span class="dot">•</span><span>1 bath</span><span class="dot">•</span><span>84 m²</span></div><div class="price">EGP 11,000 <span>/ month</span></div></div></article>
+</div>
+<div class="feature-strip"><div><h2>Make your next move with confidence.</h2><p>Verified owners, useful reviews, and the neighborhood context you actually need.</p></div><button class="btn" onclick="toast('Opening the EjarMap guide')">How EjarMap works <i data-lucide="arrow-right"></i></button></div>
+<div class="map-section" id="map"><div class="map-copy"><div class="eyebrow" data-i18n="areaEyebrow">Explore the area</div><h2 data-i18n="mapTitle">Find properties on the map.</h2><p data-i18n="mapCopy">See the locations of published properties. Select a marker to view its details.</p><p class="map-hint" data-i18n="mapHint">Only listings with a selected map location appear here.</p></div><div id="browseMap" class="live-map" aria-label="Map showing published properties"></div></div>
+</div></section></main>
+<div id="authModal" class="ej-modal" hidden><div class="ej-panel"><button class="ej-close" data-close="authModal">×</button><h2 data-i18n="account">Your account</h2><p data-i18n="accountHelp">Sign in or create an account to manage your properties.</p><form id="authForm"><label data-i18n="email">Email</label><input id="authEmail" type="email" required autocomplete="email"><label data-i18n="password">Password</label><input id="authPassword" type="password" required minlength="6" autocomplete="current-password"><div class="ej-actions"><button class="btn primary" type="submit" data-i18n="signin">Sign in</button><button class="btn" id="signupBtn" type="button" data-i18n="createAccount">Create account</button></div></form><button id="signoutBtn" class="btn" type="button" hidden data-i18n="signout">Sign out</button><p id="authStatus" class="ej-status"></p></div></div>
+<div id="accountSettingsModal" class="ej-modal" hidden><div class="ej-panel"><button class="ej-close" data-close="accountSettingsModal">×</button><h2 data-i18n="settingsTitle">Account settings</h2><p id="accountEmailLabel"></p><form id="profileForm"><label><span data-i18n="displayName">Display name</span><input id="displayNameInput" maxlength="60" autocomplete="name"></label><label><span data-i18n="phoneNumber">Phone number (optional)</span><input id="phoneInput" type="tel" maxlength="25" autocomplete="tel"></label><button class="btn primary" type="submit" data-i18n="saveSettings">Save settings</button></form><form id="passwordForm"><label><span data-i18n="newPassword">New password</span><input id="newPasswordInput" type="password" minlength="6" autocomplete="new-password"></label><button class="btn" type="submit" data-i18n="changePassword">Change password</button></form><button id="settingsSignoutBtn" class="btn" type="button" data-i18n="signout">Sign out</button><p id="settingsStatus" class="ej-status"></p></div></div>\n<div id="propertyModal" class="ej-modal" hidden><div class="ej-panel ej-wide"><button class="ej-close" data-close="propertyModal">×</button><h2 data-i18n="addTitle">Add your property</h2><p data-i18n="addHelp">Fill in the details. Your listing will be saved to EjarMap.</p><form id="propertyForm"><div class="ej-fields"><label><span data-i18n="propertyType">Property type</span><select name="property_type"><option value="apartment" data-i18n="apartment">Apartment</option><option value="villa" data-i18n="villa">Villa</option><option value="chalet" data-i18n="chalet">Chalet</option><option value="studio" data-i18n="studio">Studio</option><option value="shop" data-i18n="shop">Shop</option><option value="office" data-i18n="office">Office</option><option value="land" data-i18n="land">Land</option></select></label><label><span data-i18n="listingType">Offer type</span><select name="listing_type"><option value="rent" data-i18n="rent">Rent</option><option value="sale" data-i18n="sale">Sale</option></select></label><label id="ownershipDocumentField" hidden><span data-i18n="title">Ownership document</span><input name="title" type="text" maxlength="120" placeholder="Enter ownership document details"></label><label><span data-i18n="price">Price</span> <small id="priceUnitHint">(EGP / month)</small><input name="price" type="number" min="0" step="1" required></label><label><span data-i18n="contactName">Your name</span><input name="contact_name" maxlength="60" autocomplete="name" required></label><label><span data-i18n="contactPhone">Contact phone</span><input name="contact_phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="25" required placeholder="01xxxxxxxxx"></label><label><span data-i18n="governorate">Governorate</span><input name="governorate" required></label><label><span data-i18n="city">City</span><input name="city" required></label><label><span data-i18n="area">Area / neighborhood</span><input name="area"></label><label><span data-i18n="bedrooms">Bedrooms</span><input name="bedrooms" type="number" min="0"></label><label><span data-i18n="bathrooms">Bathrooms</span><input name="bathrooms" type="number" min="0"></label><label><span data-i18n="size">Area (m²)</span><input name="area_m2" type="number" min="0"></label><label class="ej-full"><span data-i18n="description">Description</span><textarea name="description" rows="3"></textarea></label><div class="ej-full"><label><span data-i18n="pinLocation">Choose the property location on the map (required)</span></label><div class="map-search-row"><input id="mapPlaceSearch" type="search" placeholder="Search for a place or address" autocomplete="off"><button class="btn" id="mapPlaceSearchBtn" type="button" data-i18n="mapSearchButton">Find place</button></div><div class="map-search-row"><input id="googleMapsUrl" type="url" placeholder="Paste a Google Maps share link" autocomplete="off"><button class="btn" id="googleMapsImportBtn" type="button" data-i18n="googleMapsImport">Import Google Maps location</button></div><p id="googleMapsStatus" class="map-search-status" aria-live="polite"></p><p id="mapSearchChoose" class="map-search-status" data-i18n="mapSearchChoose" hidden>Choose the correct result:</p><div id="mapSearchResults" class="map-search-results"></div><div id="mapSearchStatus" class="map-search-status" aria-live="polite"></div><div id="pickMap" class="pick-map"></div><p class="ej-map-help" data-i18n="mapPickHelp">Tap the map to place the pin as accurately as possible.</p><input type="hidden" name="latitude" id="listingLatitude" required><input type="hidden" name="longitude" id="listingLongitude" required></div><label class="ej-full"><span data-i18n="exteriorPhotos">Outside photos (up to 5 MB each)</span><input name="exterior_photos" id="propertyPhotos" type="file" accept="image/jpeg,image/png,image/webp" multiple></label><label class="ej-full"><span data-i18n="interiorPhotos">Inside photos – show the finishing and rooms (up to 5 MB each)</span><input name="interior_photos" id="propertyInteriorPhotos" type="file" accept="image/jpeg,image/png,image/webp" multiple></label></div><button class="btn primary" type="submit" data-i18n="publish">Publish listing</button><p id="propertyStatus" class="ej-status"></p></form></div></div>
+<style>
+.ej-modal{position:fixed;inset:0;background:#10182799;z-index:100;display:grid;place-items:center;padding:16px;overflow:auto}.ej-modal[hidden]{display:none}.ej-panel{position:relative;background:white;color:#1d2939;border-radius:20px;padding:28px;width:min(100%,480px);max-height:92vh;overflow:auto;box-shadow:0 20px 70px #0003}.ej-wide{width:min(100%,760px)}.ej-panel h2{font-size:25px;margin-bottom:8px}.ej-panel>p{color:#667085;margin-bottom:18px}.ej-close{position:absolute;right:16px;top:12px;border:0;background:transparent;font-size:28px;cursor:pointer}.ej-panel label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;margin:10px 0}.ej-panel [hidden]{display:none!important}.ej-panel input,.ej-panel select,.ej-panel textarea{width:100%;border:1px solid #d0d5dd;border-radius:10px;padding:11px;background:#fff;color:#1d2939;font:inherit}.ej-fields{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px}.ej-full{grid-column:1/-1}.ej-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.ej-status{font-size:13px;color:#2456a6;margin-top:12px;white-space:pre-wrap}.ej-panel [type=submit]{margin-top:14px}@media(max-width:560px){.ej-fields{grid-template-columns:1fr}.ej-full{grid-column:auto}.nav-actions #listPropertyBtn{display:inline-flex}.nav-actions #authBtn{padding:0 9px;font-size:12px}}
+html[dir=rtl] body{text-align:right}html[dir=rtl] .nav{direction:rtl}html[dir=rtl] .nav-actions{direction:ltr;flex-direction:row;unicode-bidi:isolate}html[dir=rtl] .ej-close{right:auto;left:16px}
+</style>
+<footer class="footer" id="about"><div class="shell footer-inner"><div><a class="brand" href="#"><span class="brand-mark"><i data-lucide="map-pin"></i></span>EjarMap</a><p class="footer-copy" data-i18n="footerCopy">A clearer way to find your next home.</p></div><div class="footer-links"><a href="#">About us</a><a href="#">Help center</a><a href="#">Privacy</a><a href="#">Terms</a><a href="mailto:light1of1erth@gmail.com?subject=EjarMap%20Complaint" data-i18n="complaintsEmail">Complaints &amp; inquiries: light1of1erth@gmail.com</a></div></div></footer><div class="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(message){const el=document.querySelector('.toast');el.textContent=message;el.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.remove('show'),3500)}
+function save(button){button.classList.toggle('saved');const icon=button.querySelector('svg');if(icon)icon.setAttribute('fill',button.classList.contains('saved')?'currentColor':'none');toast(button.classList.contains('saved')?'Saved to favorites':'Removed from favorites')}
+const SUPABASE_URL='https://bisgcafbjfucythblcdv.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable__e0rSECocsjZNDbx55QwsQ_5z33Zi51';
+let db=null, language='ar';
+const words={en:{explore:'Explore',mapView:'Map view',saved:'Saved',how:'How it works',eyebrow:'Rent with more certainty',heroTitle:'Find a place that feels right.',heroCopy:'Search verified rentals by neighborhood, budget, and the details that make a home yours. No noise, just a clearer way to move.',heroNote:'Every listing has a story.',heroNoteCopy:'Explore real neighborhoods, honest reviews, and homes that fit the way you live.',where:'Where',budget:'Maximum price (EGP)',search:'Search',anyType:'Any type',offerTypeFilter:'Offer',allOffers:'All',bedroomsFilter:'Bedrooms',anyNumber:'Any',clearFilters:'Clear filters',resultCountLabel:'properties',homes:'Homes worth seeing',homesCopy:"Curated places in Cairo's most-loved neighborhoods",areaEyebrow:'Explore the area',mapTitle:'See what living there feels like.',mapCopy:'See the locations of published properties. Select a marker to view its details.',mapHint:'Only listings with a selected map location appear here.',pinLocation:'Choose the property location on the map (required)',mapPickHelp:'Tap the map to place the pin as accurately as possible.',mapSearchPlaceholder:'Search for a place or address',mapSearchButton:'Find place',mapSearchEmpty:'No matching places found.',mapSearchError:'Could not search right now. Try again.',mapSearchChoose:'Choose the correct result:',googleMapsPlaceholder:'Paste a Google Maps share link',googleMapsImport:'Import Google Maps location',googleMapsBad:'Could not read coordinates from this link. In Google Maps, choose Share → Copy link; use a full link containing the location coordinates.',googleMapsOk:'Google Maps location imported. Check the pin before publishing.',footerCopy:'A clearer way to find your next home.',complaintsEmail:'Complaints & inquiries: light1of1erth@gmail.com',list:'List your property',signin:'Sign in',signout:'Sign out',account:'Your account',accountHelp:'Sign in or create an account to manage your properties.',email:'Email',password:'Password',createAccount:'Create account',settingsTitle:'Account settings',displayName:'Display name',phoneNumber:'Phone number (optional)',saveSettings:'Save settings',newPassword:'New password',changePassword:'Change password',addTitle:'Add your property',addHelp:'Fill in the details. Your listing will be saved to EjarMap.',title:'Ownership document details',propertyType:'Property type',apartment:'Apartment',villa:'Villa',chalet:'Chalet',studio:'Studio',shop:'Shop',office:'Office',land:'Land',rent:'Rent',sale:'Sale',listingType:'Offer type',price:'Price (EGP)',pricePerNight:'EGP / night',pricePerMonth:'EGP / month',priceForSale:'EGP / total',contactName:'Your name',contactPhone:'Contact phone (shown to buyers)',callOwner:'Call owner',deleteListing:'Delete listing',confirmDelete:'Are you sure you want to delete this listing?',deleted:'Listing deleted.',deleteError:'Could not delete: ',governorate:'Governorate',city:'City',area:'Area / neighborhood',bedrooms:'Bedrooms',bathrooms:'Bathrooms',size:'Area (m²)',description:'Description',photos:'Property photos (up to 5 MB each)',exteriorPhotos:'Outside photos (up to 5 MB each)',interiorPhotos:'Inside photos – show the finishing and rooms (up to 5 MB each)',publish:'Publish listing',loginFirst:'Please sign in first.',noListings:'No active listings yet. Be the first to add one.',loaded:'Live listings loaded',uploading:'Saving your listing…',published:'Your property was published successfully.',authOk:'You are signed in.',authError:'Authentication failed: ',saveError:'Could not save: '},ar:{explore:'استكشف',mapView:'عرض الخريطة',saved:'المحفوظات',how:'كيف يعمل الموقع',eyebrow:'استأجر بثقة أكبر',heroTitle:'اعثر على المكان المناسب لك.',heroCopy:'ابحث عن عقارات حسب المنطقة والميزانية والتفاصيل التي تهمك. تجربة أبسط للعثور على منزلك.',heroNote:'كل عقار له حكاية.',heroNoteCopy:'استكشف مناطق حقيقية وعقارات تناسب أسلوب حياتك.',where:'المكان',budget:'أقصى سعر (جنيه)',search:'بحث',anyType:'كل الأنواع',offerTypeFilter:'نوع العرض',allOffers:'الكل',bedroomsFilter:'غرف النوم',anyNumber:'أي عدد',clearFilters:'مسح الفلاتر',resultCountLabel:'عقار',homes:'عقارات تستحق المشاهدة',homesCopy:'مجموعة مختارة من أفضل مناطق القاهرة',areaEyebrow:'استكشف المنطقة',mapTitle:'تعرّف على المنطقة قبل الانتقال.',mapCopy:'شاهد مواقع العقارات المنشورة على الخريطة، واضغط على العلامة لعرض التفاصيل.',mapHint:'العقارات التي تم تحديد موقعها فقط ستظهر هنا.',pinLocation:'حدد موقع العقار على الخريطة (مطلوب)',mapPickHelp:'اضغط على الخريطة لوضع العلامة في موقع العقار بدقة قدر الإمكان.',mapSearchPlaceholder:'ابحث عن مكان أو عنوان',mapSearchButton:'ابحث عن المكان',mapSearchEmpty:'لم نعثر على أماكن مطابقة.',mapSearchError:'تعذر البحث الآن. حاول مرة أخرى.',mapSearchChoose:'اختر المكان الصحيح:',googleMapsPlaceholder:'الصق رابط مشاركة الموقع من Google Maps',googleMapsImport:'إدراج موقع Google Maps',googleMapsBad:'لم نتمكن من استخراج الإحداثيات من الرابط. من Google Maps اختر مشاركة ثم نسخ الرابط. استخدم رابطًا كاملًا يحتوي على إحداثيات الموقع.',googleMapsOk:'تم إدراج موقع Google Maps. راجع العلامة قبل النشر.',footerCopy:'طريقة أوضح للعثور على منزلك القادم.',complaintsEmail:'للشكاوى والاستفسارات: light1of1erth@gmail.com',list:'أضف عقارك',signin:'تسجيل الدخول',signout:'تسجيل الخروج',account:'حسابك',accountHelp:'سجّل الدخول أو أنشئ حسابًا لإدارة عقاراتك.',email:'البريد الإلكتروني',password:'كلمة المرور',createAccount:'إنشاء حساب',settingsTitle:'إعدادات الحساب',displayName:'الاسم المعروض',phoneNumber:'رقم الهاتف (اختياري)',saveSettings:'حفظ الإعدادات',newPassword:'كلمة مرور جديدة',changePassword:'تغيير كلمة المرور',addTitle:'أضف عقارك',addHelp:'أدخل بيانات العقار وسيتم حفظه على EjarMap.',title:'سند الملكية',propertyType:'نوع العقار',apartment:'شقة',villa:'فيلا',chalet:'شاليه',studio:'استوديو',shop:'محل تجاري',office:'مكتب',land:'أرض',rent:'إيجار',sale:'بيع',listingType:'نوع العرض',price:'السعر (جنيه)',pricePerNight:'جنيه / الليلة',pricePerMonth:'جنيه / الشهر',priceForSale:'جنيه / إجمالي السعر',contactName:'اسم صاحب الإعلان',contactPhone:'رقم الهاتف للتواصل (سيظهر للمشترين)',callOwner:'اتصل بصاحب العقار',deleteListing:'حذف العقار',confirmDelete:'هل أنت متأكد أنك تريد حذف هذا العقار؟',deleted:'تم حذف العقار.',deleteError:'تعذر حذف العقار: ',governorate:'المحافظة',city:'المدينة',area:'المنطقة / الحي',bedrooms:'غرف النوم',bathrooms:'الحمامات',size:'المساحة (م²)',description:'الوصف',photos:'صور العقار (حتى 5 ميجابايت للصورة)',exteriorPhotos:'صور العقار من الخارج (حتى 5 ميجابايت للصورة)',interiorPhotos:'صور العقار من الداخل لإظهار التشطيب والغرف (حتى 5 ميجابايت للصورة)',publish:'نشر العقار',loginFirst:'سجّل الدخول أولًا.',noListings:'لا توجد عقارات منشورة حتى الآن. كن أول من يضيف عقاره.',loaded:'تم تحميل العقارات',uploading:'جارٍ حفظ العقار…',published:'تم نشر عقارك بنجاح.',authOk:'تم تسجيل الدخول.',authError:'فشل تسجيل الدخول: ',saveError:'تعذر الحفظ: '}};
+function tr(k){return words[language][k]||k}
+function updatePriceUnit(){const type=document.querySelector('#propertyForm [name=property_type]')?.value;const offer=document.querySelector('#propertyForm [name=listing_type]')?.value;const key=offer==='sale'?'priceForSale':(type==='chalet'?'pricePerNight':'pricePerMonth');const hint=document.getElementById('priceUnitHint');if(hint)hint.textContent='('+tr(key)+')';updateOwnershipDocumentVisibility();}
+function updateOwnershipDocumentVisibility(){const offer=document.querySelector('#propertyForm [name=listing_type]')?.value;const field=document.getElementById('ownershipDocumentField');const input=field?.querySelector('[name=title]');const visible=offer==='sale';if(field){field.hidden=!visible;field.style.display=visible?'flex':'none';}if(input){input.required=visible;if(!visible)input.value='';}}
+function setLanguage(lang){
+ language=lang;
+ document.documentElement.lang=lang;
+ document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+ document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(words[lang][k])el.textContent=words[lang][k]});
+ const toggle=document.getElementById('langToggle');if(toggle)toggle.textContent=lang==='ar'?'English':'العربية';
+ const mapSearchInput=document.getElementById('mapPlaceSearch');if(mapSearchInput)mapSearchInput.placeholder=tr('mapSearchPlaceholder');
+ const mapSearchBtn=document.getElementById('mapPlaceSearchBtn');if(mapSearchBtn)mapSearchBtn.textContent=tr('mapSearchButton');
+ const mapSearchLabel=document.getElementById('mapSearchChoose');if(mapSearchLabel)mapSearchLabel.textContent=tr('mapSearchChoose');
+ const googleUrl=document.getElementById('googleMapsUrl');if(googleUrl)googleUrl.placeholder=tr('googleMapsPlaceholder');
+ const googleBtn=document.getElementById('googleMapsImportBtn');if(googleBtn)googleBtn.textContent=tr('googleMapsImport');
+ const placeholders={where:lang==='ar'?'المدينة أو المنطقة':'City or neighborhood',type:lang==='ar'?'كل الأنواع':'Any type',budget:lang==='ar'?'أقصى سعر بالجنيه':'Maximum price in EGP'};
+ Object.entries(placeholders).forEach(([id,value])=>{const el=document.getElementById(id);if(el){el.placeholder=value;el.setAttribute('aria-label',value)}});
+ updatePriceUnit();
+ if(db)loadListings().catch(err=>console.error('Language refresh failed',err));
+}
+// Isolated header actions: each control owns only its own click handler.
+const languageButton=document.getElementById('langToggle');
+const addPropertyButton=document.getElementById('listPropertyBtn');
+if(languageButton){
+ languageButton.type='button';
+ languageButton.onclick=function(event){
+  event.preventDefault(); event.stopPropagation();
+  setLanguage(language==='en'?'ar':'en');
+  return false;
+ };
+}
+if(addPropertyButton){
+ addPropertyButton.type='button';
+ addPropertyButton.onclick=function(event){
+  event.preventDefault(); event.stopPropagation();
+  if(!currentSession){toast(language==='ar'?'جاري تجهيز جلسة النشر، حاول مرة أخرى بعد لحظة.':'Preparing your publishing session. Try again in a moment.');return false;}
+  showModal('propertyModal');
+  initPickMap();
+  return false;
+ };
+}
+setLanguage('ar');
+document.getElementById('listingSearchForm').addEventListener('submit',e=>{e.preventDefault();loadListings().catch(err=>{console.error(err);toast(language==='ar'?'تعذر تنفيذ البحث. حاول مرة أخرى.':'Search failed. Please try again.')});});
+['offerTypeFilter','bedroomsFilter'].forEach(id=>document.getElementById(id).addEventListener('change',()=>loadListings().catch(console.error)));
+document.getElementById('clearListingFilters').addEventListener('click',()=>{['where','type','budget','offerTypeFilter','bedroomsFilter'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});loadListings().catch(console.error)});
+document.querySelector('#propertyForm [name=property_type]').addEventListener('change',updatePriceUnit);
+document.querySelector('#propertyForm [name=listing_type]').addEventListener('change',updatePriceUnit);
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.close).hidden=true));
+function showModal(id){document.getElementById(id).hidden=false}
+let currentSession=null;
+function refreshAuthUI(){const signed=!!currentSession;document.getElementById('signoutBtn').hidden=!signed;document.getElementById('authForm').hidden=signed;document.getElementById('signupBtn').hidden=signed;document.getElementById('authBtn').innerHTML=signed?('✓ '+(language==='ar'?'جاهز للنشر':'Ready to publish')):('<i data-lucide="clock"></i> '+(language==='ar'?'جارٍ التجهيز':'Preparing'));if(window.lucide)lucide.createIcons()}
+function openAccountSettings(){if(!currentSession){showModal('authModal');return}const u=currentSession.user;document.getElementById('accountEmailLabel').textContent=u.email||'';document.getElementById('displayNameInput').value=u.user_metadata?.display_name||'';document.getElementById('phoneInput').value=u.user_metadata?.phone||'';document.getElementById('settingsStatus').textContent='';document.getElementById('newPasswordInput').value='';showModal('accountSettingsModal')}
+document.getElementById('profileForm').addEventListener('submit',async e=>{e.preventDefault();const status=document.getElementById('settingsStatus');status.textContent='…';const {data,error}=await db.auth.updateUser({data:{display_name:document.getElementById('displayNameInput').value.trim(),phone:document.getElementById('phoneInput').value.trim()}});if(error){status.textContent=(language==='ar'?'تعذر حفظ الإعدادات: ':'Could not save settings: ')+error.message;return}currentSession=data.user?{...currentSession,user:data.user}:currentSession;status.textContent=language==='ar'?'تم حفظ إعدادات الحساب.':'Account settings saved.'});
+document.getElementById('passwordForm').addEventListener('submit',async e=>{e.preventDefault();const password=document.getElementById('newPasswordInput').value,status=document.getElementById('settingsStatus');if(password.length<6){status.textContent=language==='ar'?'كلمة المرور يجب ألا تقل عن 6 أحرف.':'Password must be at least 6 characters.';return}const {error}=await db.auth.updateUser({password});if(error){status.textContent=(language==='ar'?'تعذر تغيير كلمة المرور: ':'Could not change password: ')+error.message;return}document.getElementById('newPasswordInput').value='';status.textContent=language==='ar'?'تم تغيير كلمة المرور.':'Password changed.'});
+document.getElementById('settingsSignoutBtn').addEventListener('click',async()=>{const {error}=await db.auth.signOut();if(error){document.getElementById('settingsStatus').textContent=error.message;return}currentSession=null;refreshAuthUI();document.getElementById('accountSettingsModal').hidden=true;toast(tr('signout'))});
+
+document.getElementById('mapPlaceSearchBtn').addEventListener('click',searchPickMapPlace);
+document.getElementById('googleMapsImportBtn').addEventListener('click',importGoogleMapsLocation);
+document.getElementById('googleMapsUrl').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();importGoogleMapsLocation();}});
+document.getElementById('mapPlaceSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();searchPickMapPlace();}});
+let browseMap=null,pickMap=null,pickMarker=null,browseMarkers=[];
+function initPickMap(){
+ const el=document.getElementById('pickMap');if(!el||!window.L)return;
+ if(!pickMap){pickMap=L.map(el).setView([26.8206,30.8025],6);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(pickMap);pickMap.on('click',e=>{document.getElementById('listingLatitude').value=e.latlng.lat.toFixed(7);document.getElementById('listingLongitude').value=e.latlng.lng.toFixed(7);if(pickMarker)pickMarker.setLatLng(e.latlng);else pickMarker=L.marker(e.latlng).addTo(pickMap);});}
+ setTimeout(()=>pickMap.invalidateSize(),180);
+}
+async function searchPickMapPlace(){
+ const input=document.getElementById('mapPlaceSearch');
+ const status=document.getElementById('mapSearchStatus');
+ const resultsBox=document.getElementById('mapSearchResults');
+ const chooseLabel=document.getElementById('mapSearchChoose');
+ const query=input?.value.trim();
+ if(!query){status.textContent=language==='ar'?'اكتب اسم المكان أو العنوان أولًا.':'Enter a place or address first.';return;}
+ status.textContent=language==='ar'?'جارٍ البحث عن المكان…':'Searching for the place…';
+ resultsBox.innerHTML='';chooseLabel.hidden=true;
+ try{
+  const url='https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&addressdetails=1&accept-language='+encodeURIComponent(language)+'&q='+encodeURIComponent(query);
+  const response=await fetch(url,{headers:{'Accept':'application/json'}});
+  if(!response.ok)throw new Error('Geocoding request failed');
+  const results=await response.json();
+  if(!results.length){status.textContent=tr('mapSearchEmpty');return;}
+  status.textContent='';
+  if(results.length>1)chooseLabel.hidden=false;
+  results.forEach((place,index)=>{
+   const button=document.createElement('button');button.type='button';button.textContent=place.display_name;
+   button.addEventListener('click',()=>{
+    const lat=Number(place.lat),lon=Number(place.lon);
+    if(!Number.isFinite(lat)||!Number.isFinite(lon))return;
+    const point=[lat,lon];
+    if(!pickMap)initPickMap();
+    pickMap.setView(point,Math.max(15,pickMap.getZoom()));
+    document.getElementById('listingLatitude').value=lat.toFixed(7);
+    document.getElementById('listingLongitude').value=lon.toFixed(7);
+    if(pickMarker)pickMarker.setLatLng(point);else pickMarker=L.marker(point).addTo(pickMap);
+    resultsBox.innerHTML='';chooseLabel.hidden=true;
+    status.textContent=language==='ar'?'تم تحديد الموقع. يمكنك تحريك العلامة أو الضغط على الخريطة لتعديلها.':'Location selected. You can move the pin or click the map to adjust it.';
+   });
+   resultsBox.appendChild(button);
+  });
+ }catch(error){console.error(error);status.textContent=tr('mapSearchError');}
+}
+
+function extractGoogleMapsCoordinates(raw){
+ let value=String(raw||'').trim();if(!value)return null;
+ // Accept full Google Maps URLs with coordinates in @lat,lng, q=lat,lng,
+ // ll=lat,lng, or the !3dLAT!4dLNG data markers.
+ const patterns=[/@(-?\d{1,2}\.\d+)\s*,\s*(-?\d{1,3}\.\d+)/,/([?&](?:q|query|ll|destination)=)(-?\d{1,2}\.\d+)\s*,\s*(-?\d{1,3}\.\d+)/,/!3d(-?\d{1,2}\.\d+)!4d(-?\d{1,3}\.\d+)/];
+ for(let i=0;i<patterns.length;i++){
+  const m=value.match(patterns[i]);if(!m)continue;
+  const lat=Number(i===1?m[2]:m[1]),lng=Number(i===1?m[3]:m[2]);
+  if(Number.isFinite(lat)&&Number.isFinite(lng)&&Math.abs(lat)<=90&&Math.abs(lng)<=180)return {lat,lng};
+ }
+ // Also accept a pasted coordinate pair by itself.
+ const pair=value.match(/^\s*(-?\d{1,2}\.\d+)\s*,\s*(-?\d{1,3}\.\d+)\s*$/);
+ if(pair){const lat=Number(pair[1]),lng=Number(pair[2]);if(Math.abs(lat)<=90&&Math.abs(lng)<=180)return {lat,lng};}
+ return null;
+}
+function importGoogleMapsLocation(){
+ const input=document.getElementById('googleMapsUrl'),status=document.getElementById('googleMapsStatus');
+ const coords=extractGoogleMapsCoordinates(input.value);
+ if(!coords){status.textContent=tr('googleMapsBad');return;}
+ const point=[coords.lat,coords.lng];if(!pickMap)initPickMap();
+ if(!pickMap){status.textContent=tr('mapSearchError');return;}
+ pickMap.setView(point,17);
+ document.getElementById('listingLatitude').value=coords.lat.toFixed(7);
+ document.getElementById('listingLongitude').value=coords.lng.toFixed(7);
+ if(pickMarker)pickMarker.setLatLng(point);else pickMarker=L.marker(point).addTo(pickMap);
+ status.textContent=tr('googleMapsOk');
+}
+
+function initBrowseMap(){
+ const el=document.getElementById('browseMap');if(!el||!window.L)return;
+ if(!browseMap){browseMap=L.map(el).setView([26.8206,30.8025],6);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(browseMap);}
+ setTimeout(()=>browseMap.invalidateSize(),180);
+}
+function updateBrowseMap(rows){
+ initBrowseMap();if(!browseMap)return;
+ browseMarkers.forEach(m=>browseMap.removeLayer(m));browseMarkers=[];const bounds=[];
+ (rows||[]).forEach(x=>{if(x.latitude==null||x.longitude==null)return;const ll=[Number(x.latitude),Number(x.longitude)];if(!Number.isFinite(ll[0])||!Number.isFinite(ll[1]))return;const marker=L.marker(ll).addTo(browseMap);const price=Number(x.price||0).toLocaleString();const phone=x.contact_phone?`<br><a href="tel:${esc(x.contact_phone)}">${esc(x.contact_phone)}</a>`:'';marker.bindPopup(`<strong>${esc(x.title)}</strong><br>${esc([x.area,x.city,x.governorate].filter(Boolean).join(', '))}<br>${price} ${esc(x.currency||'EGP')}${phone}`);browseMarkers.push(marker);bounds.push(ll);});
+ if(bounds.length)browseMap.fitBounds(bounds,{padding:[28,28],maxZoom:13});
+}
+async function loadListings(){
+ const {data,error}=await db.from('listings').select('id,owner_id,contact_phone,title,description,property_type,listing_type,price,currency,governorate,city,area,bedrooms,bathrooms,area_m2,latitude,longitude,expires_at,created_at').eq('status','active').gt('expires_at',new Date().toISOString()).order('created_at',{ascending:false}).limit(500);
+ if(error)throw error;
+ const placeTerm=(document.getElementById('where')?.value||'').trim().toLocaleLowerCase();
+ const propertyType=document.getElementById('type')?.value||'';
+ const maxPrice=Number(document.getElementById('budget')?.value||0);
+ const offerType=document.getElementById('offerTypeFilter')?.value||'';
+ const minBedrooms=Number(document.getElementById('bedroomsFilter')?.value||0);
+ const filtered=(data||[]).filter(x=>{const hay=[x.title,x.description,x.governorate,x.city,x.area].filter(Boolean).join(' ').toLocaleLowerCase();return (!placeTerm||hay.includes(placeTerm))&&(!propertyType||x.property_type===propertyType)&&(!maxPrice||Number(x.price)<=maxPrice)&&(!offerType||x.listing_type===offerType)&&(!minBedrooms||Number(x.bedrooms||0)>=minBedrooms)});
+ updateBrowseMap(filtered);
+ const grid=document.getElementById('listingGrid');
+ if(!filtered.length){grid.innerHTML='<div style="grid-column:1/-1;padding:35px;text-align:center;color:#667085">'+tr('noListings')+'</div>';}
+ else {
+  const ids=filtered.map(x=>x.id);
+  const {data:imageRows,error:imageError}=await db.from('listing_images').select('listing_id,image_path,sort_order,image_type').in('listing_id',ids).order('sort_order',{ascending:true});
+  if(imageError)throw imageError;
+  const imagesByListing={};
+  for(const im of (imageRows||[])){
+   const {data:publicData}=db.storage.from('property-images').getPublicUrl(im.image_path);
+   if(!imagesByListing[im.listing_id])imagesByListing[im.listing_id]=[];
+   imagesByListing[im.listing_id].push({url:publicData.publicUrl,type:im.image_type||'exterior'});
+  }
+  grid.innerHTML=filtered.map(x=>{
+   const loc=[x.area,x.city,x.governorate].filter(Boolean).map(esc).join(', ');
+   const details=[x.bedrooms?x.bedrooms+' beds':'',x.bathrooms?x.bathrooms+' baths':'',x.area_m2?x.area_m2+' m²':''].filter(Boolean).join(' · ');
+   const listingPhotos=imagesByListing[x.id]||[];
+   const visual=listingPhotos.length?listingPhotos.map((photo,index)=>`<div class="photo-slide"><img src="${esc(photo.url)}" alt="${esc(x.title)} – ${photo.type==='interior'?'interior':'exterior'} photo ${index+1}" loading="lazy"><span class="photo-kind">${photo.type==='interior'?(language==='ar'?'من الداخل':'Inside'):(language==='ar'?'من الخارج':'Outside')}</span></div>`).join(''):'<div style="height:100%;min-width:100%;display:grid;place-items:center;background:linear-gradient(135deg,#dce8e9,#b9d0d4);color:#35566b"><i data-lucide="house" style="width:48px;height:48px"></i></div>';
+   const extraImages=listingPhotos.length>1?`<span class="photo-count">${listingPhotos.length} ${language==='ar'?'صور':'photos'} · ${language==='ar'?'اسحب':'Swipe'}</span>`:'';
+   const offerBadge=`<span class="offer-badge ${x.listing_type==='sale'?'for-sale':'for-rent'}">${x.listing_type==='sale'?(language==='ar'?'للبيع':'FOR SALE'):(language==='ar'?'للإيجار':'FOR RENT')}</span>`;
+   const contact=x.contact_phone?`<a class="btn primary" href="tel:${esc(x.contact_phone)}">${tr('callOwner')}: ${esc(x.contact_phone)}</a>`:'';
+   const ownerActions=currentSession?.user?.id===x.owner_id?`<button class="btn" type="button" data-delete-listing="${esc(x.id)}">${tr('deleteListing')}</button>`:'';
+   return `<article class="property"><div class="property-visual">${visual}${offerBadge}${extraImages}</div><div class="property-body"><h3>${esc(x.title)}</h3><p class="property-location">${loc}</p><div class="property-details">${esc(details||x.property_type||'')}</div><div class="price">${Number(x.price||0).toLocaleString()} ${esc(x.currency||'EGP')}<span> / ${x.listing_type==='sale'?(language==='ar'?'إجمالي السعر':'total'):((x.property_type==='chalet')?(language==='ar'?'الليلة':'night'):(language==='ar'?'الشهر':'month'))}</span></div><div class="property-actions">${contact}${ownerActions}</div></div></article>`;
+  }).join('');
+  if(window.lucide)lucide.createIcons();
+  grid.querySelectorAll('[data-delete-listing]').forEach(btn=>btn.addEventListener('click',()=>deleteListing(btn.dataset.deleteListing,btn)));
+ }
+ const count=document.getElementById('listingResultCount');if(count)count.textContent=filtered.length.toLocaleString();
+}
+async function deleteListing(listingId,button){
+ if(!currentSession)return;
+ if(!confirm(tr('confirmDelete')))return;
+ const original=button.textContent;button.disabled=true;button.textContent='…';
+ try{
+  const {data:rows,error:rowsError}=await db.from('listing_images').select('image_path').eq('listing_id',listingId);
+  if(rowsError)throw rowsError;
+  const paths=(rows||[]).map(r=>r.image_path);
+  if(paths.length){const {error:storageError}=await db.storage.from('property-images').remove(paths);if(storageError)throw storageError;}
+  const {error}=await db.from('listings').delete().eq('id',listingId).eq('owner_id',currentSession.user.id);
+  if(error)throw error;
+  toast(tr('deleted'));await loadListings();
+ }catch(err){console.error(err);toast(tr('deleteError')+err.message);button.disabled=false;button.textContent=original;}
+}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function init(){const {createClient}=supabase;db=createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);const {data:{session}}=await db.auth.getSession();currentSession=session;if(!currentSession){const anon=await db.auth.signInAnonymously();if(anon.error){console.error(anon.error);toast(language==='ar'?'تعذر بدء جلسة النشر. فعّل Anonymous Sign-ins في Supabase.':'Could not start a publishing session. Enable Anonymous Sign-ins in Supabase.');}else currentSession=anon.data.session;}refreshAuthUI();updatePriceUnit();updateOwnershipDocumentVisibility();db.auth.onAuthStateChange((_event,session)=>{currentSession=session;refreshAuthUI()});await loadListings();toast(tr('loaded'));}
+document.getElementById('authForm').addEventListener('submit',async e=>{e.preventDefault();const email=document.getElementById('authEmail').value,password=document.getElementById('authPassword').value;const status=document.getElementById('authStatus');status.textContent='…';const {data,error}=await db.auth.signInWithPassword({email,password});if(error){status.textContent=tr('authError')+error.message;return}currentSession=data.session;refreshAuthUI();status.textContent=tr('authOk');});
+document.getElementById('signupBtn').addEventListener('click',async()=>{const email=document.getElementById('authEmail').value,password=document.getElementById('authPassword').value;const status=document.getElementById('authStatus');if(!email||password.length<6){status.textContent=language==='ar'?'أدخل بريدًا صحيحًا وكلمة مرور من 6 أحرف على الأقل.':'Enter a valid email and password with at least 6 characters.';return}const {data,error}=await db.auth.signUp({email,password});status.textContent=error?tr('authError')+error.message:(language==='ar'?'تم إنشاء الحساب. افحص بريدك إذا طُلب تأكيده.':'Account created. Check your email if confirmation is required.');if(data.session){currentSession=data.session;refreshAuthUI()}});
+document.getElementById('signoutBtn').addEventListener('click',async()=>{await db.auth.signOut();currentSession=null;refreshAuthUI();document.getElementById('authStatus').textContent='';});
+document.querySelector('#propertyForm [name=listing_type]').addEventListener('change',updatePriceUnit);
+document.getElementById('propertyForm').addEventListener('submit',async e=>{e.preventDefault();const status=document.getElementById('propertyStatus');if(!currentSession){status.textContent=tr('loginFirst');return}const form=e.currentTarget,fd=new FormData(form),user=currentSession.user;if(!fd.get('latitude')||!fd.get('longitude')){status.textContent=language==='ar'?'حدد موقع العقار على الخريطة أولًا.':'Please select the property location on the map first.';return}status.textContent=tr('uploading');try{const row={owner_id:user.id,contact_name:fd.get('contact_name').trim(),title:(fd.get('title')||'').trim()||(fd.get('listing_type')==='sale'?(language==='ar'?'عقار للبيع':'Property for sale'):(language==='ar'?'عقار للإيجار':'Property for rent')),description:fd.get('description'),property_type:fd.get('property_type'),listing_type:fd.get('listing_type'),price:Number(fd.get('price')),contact_phone:fd.get('contact_phone').trim(),latitude:Number(fd.get('latitude')),longitude:Number(fd.get('longitude')),currency:'EGP',governorate:fd.get('governorate'),city:fd.get('city'),area:fd.get('area'),bedrooms:fd.get('bedrooms')?Number(fd.get('bedrooms')):null,bathrooms:fd.get('bathrooms')?Number(fd.get('bathrooms')):null,area_m2:fd.get('area_m2')?Number(fd.get('area_m2')):null,status:'active',expires_at:new Date(Date.now()+30*86400000).toISOString()};const {data:listing,error}=await db.from('listings').insert(row).select('id').single();if(error)throw error;const photoGroups=[{input:'propertyPhotos',type:'exterior'},{input:'propertyInteriorPhotos',type:'interior'}];let sortOrder=0;for(const group of photoGroups){const files=[...document.getElementById(group.input).files];for(const file of files){if(file.size>5*1024*1024)throw new Error(language==='ar'?'حجم كل صورة يجب ألا يتجاوز 5 ميجابايت.':'Each image must be 5 MB or less.');if(!['image/jpeg','image/png','image/webp'].includes(file.type))throw new Error(language==='ar'?'استخدم صور JPG أو PNG أو WEBP.':'Use JPG, PNG or WEBP images.');const path=user.id+'/'+crypto.randomUUID()+'-'+file.name.replace(/[^a-zA-Z0-9._-]/g,'_');const up=await db.storage.from('property-images').upload(path,file,{contentType:file.type,upsert:false});if(up.error)throw up.error;const ins=await db.from('listing_images').insert({listing_id:listing.id,image_path:path,sort_order:sortOrder++,image_type:group.type});if(ins.error)throw ins.error;}}status.textContent=tr('published');form.reset();updatePriceUnit();await loadListings();setTimeout(()=>document.getElementById('propertyModal').hidden=true,1200);}catch(err){console.error(err);status.textContent=tr('saveError')+err.message;}});
+const leafletScript=document.createElement('script');leafletScript.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';leafletScript.onload=()=>{initBrowseMap();if(db)loadListings().catch(e=>console.error(e));if(!document.getElementById('propertyModal').hidden)initPickMap();};leafletScript.onerror=()=>toast('Could not load map. Check internet.');document.head.appendChild(leafletScript);
+const supabaseScript=document.createElement('script');supabaseScript.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';supabaseScript.onload=()=>init().catch(e=>{console.error(e);toast('Database error: '+e.message)});supabaseScript.onerror=()=>toast('Could not load Supabase library. Check internet.');document.head.appendChild(supabaseScript);
+</script>
+</body>
+</html>
